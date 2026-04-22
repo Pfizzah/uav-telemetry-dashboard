@@ -1,32 +1,36 @@
-# UAV Telemetry Simulator + Live Dashboard 
+# UAV Telemetry Dashboard (Real-Time Monitoring System)
 
-A lightweight UAV telemetry simulation system that generates real-time(synthetic) flight data and exposes it via Flask API, with a live dashboard for visualising key state variables.
+![Dashboard](dashboard.png)
 
-## Demo
+## Overview
+This project simulates a real-time UAV telemetry system with a live dashboard for monitoring drone data.
 
-### Live Dashboard Screenshot
+It demonstrates how sensor data can be streamed, processed, and visualised in real time.
 
-![UAV Dashboard](docs/dashboard.png)
+---
 
 ## Features
-- Synthetic telemetry generation (altitude, speed, battery, position, heading)
-- REST API:
-    - `GET /api/telemetry`
-    - `POST /api/reset`
-- Web dashboard:
-    -Live stat cards
-    - Altitude chart  (Chart.js)
-    - Event log
+- Real-time telemetry simulation (altitude, speed, battery, position)
+- Live dashboard using Flask and Chart.js
+- Continuous data updates via API endpoints
+- Structured data pipeline for monitoring systems
 
-## Tech
-- Python + Flask
-- HTML + JavaScript
-- Chart.js
+---
 
-## Run Locally
-```bash
-cd backend
-python -m venv .venv
-source .venv/bin/activate # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-python app.py
+## Tech Stack
+- Python (Flask)
+- Chart.js (frontend visualisation)
+- JSON / API-based data flow
+
+---
+
+## System Flow
+
+Telemetry Simulator → Flask Backend → API → Dashboard (Charts)
+
+---
+
+## Future Work
+- Integration with real UAV hardware
+- Video + telemetry fusion
+- Computer vision integration
