@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>UAV Telemetry Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    body { font-family: -apple-system, system-ui, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; }
+    .topbar { display:flex; gap:12px; align-items:center; justify-content:space-between; margin-bottom: 16px; }
+    .left { display:flex; gap:12px; align-items:center; }
+    .pill { padding: 6px 10px; border: 1px solid #ddd; border-radius: 999px; }
+    .grid { display:grid; grid-template-columns: 1fr 1.2fr; gap: 16px; }
+    .card { border: 1px solid #e5e5e5; border-radius: 12px; padding: 14px; }
+    .stats { display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .k { color:#666; font-size: 13px; }
+    .v { font-size: 18px; font-weight: 600; }
+    button { padding: 8px 12px; border-radius: 10px; border: 1px solid #ddd; background: #fff; cursor:pointer; }
+    button:hover { background:#f6f6f6; }
+    #log { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 12px; max-height: 140px; overflow:auto; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="left">
+      <h2 style="margin:0;">UAV Telemetry Dashboard</h2>
+      <span id="conn" class="pill">● Connecting</span>
+    </div>
+
+    <div class="left">
+      <label>UAV:
+        <select id="uav">
+          <option>UAV-01</option>
+        </select>
+      </label>
+
+      <label>Rate:
+        <select id="rate">
+          <option value="1000">1 Hz</option>
+          <option value="500">2 Hz</option>
+          <option value="2000">0.5 Hz</option>
+        </select>
+      </label>
+
+      <button id="resetBtn">Reset</button>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h3 style="margin-top:0;">Live Stats</h3>
+      <div class="stats">
+        <div><div class="k">Battery</div><div class="v" id="battery">--</div></div>
+        <div><div class="k">Status</div><div class="v" id="status">--</div></div>
+
+        <div><div class="k">Altitude</div><div class="v" id="alt">--</div></div>
+        <div><div class="k">Speed</div><div class="v" id="speed">--</div></div>
+
+        <div><div class="k">Position</div><div class="v" id="pos">--</div></div>
+        <div><div class="k">Heading</div><div class="v" id="heading">--</div></div>
+
+        <div><div class="k">Updated</div><div class="v" id="updated">--</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0;">Altitude (last ~60 samples)</h3>
+      <canvas id="altChart" height="140"></canvas>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <h3 style="margin-top:0;">Event Log</h3>
+    <div id="log"></div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
